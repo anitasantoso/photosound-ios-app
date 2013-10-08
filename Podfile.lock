@@ -1,0 +1,43 @@
+PODS:
+  - AFNetworking (2.0.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.0.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.0.0)
+  - AFNetworking/Security (2.0.0)
+  - AFNetworking/Serialization (2.0.0)
+  - AFNetworking/UIKit (2.0.0):
+    - AFNetworking/NSURLConnection
+  - CocoaSoundCloudAPI (1.0.2):
+    - NXOAuth2Client (= 1.2.2)
+  - CocoaSoundCloudUI (1.0.7):
+    - CocoaSoundCloudAPI (~> 1.0.1)
+    - JSONKit
+    - OHAttributedLabel
+  - JSONKit (1.5pre)
+  - NXOAuth2Client (1.2.2)
+  - OHAttributedLabel (3.5.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.0.0)
+  - CocoaSoundCloudAPI (~> 1.0.2)
+  - CocoaSoundCloudUI (~> 1.0.7)
+  - JSONKit (~> 1.4)
+  - NXOAuth2Client (~> 1.2.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
+  CocoaSoundCloudAPI: 380156c28314f2fdfae9821a7515f1e4c5b8a617
+  CocoaSoundCloudUI: 1dc00dce5eb0d9bb65fc86cf6654af54244cf00d
+  JSONKit: 409734ab3407fce90ef7eaa95d7168f38d9a6601
+  NXOAuth2Client: 2abb027fb64a9d9a467202e281bb0f2206924661
+  OHAttributedLabel: cc550f512bb85add3a16d1d62ba9bba18168a75b
+
+COCOAPODS: 0.23.0

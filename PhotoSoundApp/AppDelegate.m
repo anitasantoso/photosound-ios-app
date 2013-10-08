@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "SCUI.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [SCSoundCloud setClientID:@"56864d0f3d29077a654b993540815ea7" secret:@"ec967e80f3ea5554200a90773ec3020e" redirectURL:[NSURL URLWithString:@"photosound://"]];
     return YES;
 }
 							
