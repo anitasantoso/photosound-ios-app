@@ -7,28 +7,20 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Kiwi.h"
+#import "InstagramNetworkService.h"
 
-@interface PhotoSoundAppTests : XCTestCase
+SPEC_BEGIN(InstagramServiceSpec)
 
-@end
-
-@implementation PhotoSoundAppTests
-
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
-
-@end
+describe(@"Async test", ^{
+    it(@"Should exercise instagram authentication", ^{
+        
+        __block NSNumber *returnVal;
+        [[InstagramNetworkService sharedInstance]requestTokenForClientID:@"54c6dc48849142fea3eac3be32d3ca28" completion:^(BOOL success) {
+            returnVal = [NSNumber numberWithBool:success];
+        }];
+        [[expectFutureValue(returnVal) shouldEventuallyBeforeTimingOutAfter(10)]equal:[NSNumber numberWithBool:YES]];
+    });
+  
+});
+SPEC_END
