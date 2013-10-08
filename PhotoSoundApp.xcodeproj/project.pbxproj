@@ -28,6 +28,18 @@
 		08138C7418043CE70050B120 /* InstagramNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C7318043CE70050B120 /* InstagramNetworkService.m */; };
 		08138C7718046E200050B120 /* InstagramUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C7618046E200050B120 /* InstagramUser.m */; };
 		08138C7A180479ED0050B120 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C79180479ED0050B120 /* ImageCell.m */; };
+		08138C80180480DE0050B120 /* SoundCloudNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C7F180480DE0050B120 /* SoundCloudNetworkService.m */; };
+		08138C83180483390050B120 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C82180483390050B120 /* PhotoViewController.m */; };
+		08138C85180484100050B120 /* Instagram_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C84180484100050B120 /* Instagram_signin.png */; };
+		08138C881804846C0050B120 /* Instagram_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C871804846C0050B120 /* Instagram_normal.png */; };
+		08138C8A180484E80050B120 /* soundcloud_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C89180484E80050B120 /* soundcloud_signin.png */; };
+		08138C8D180486280050B120 /* 26-checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C8B180486280050B120 /* 26-checkmark.png */; };
+		08138C8E180486280050B120 /* 26-checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C8C180486280050B120 /* 26-checkmark@2x.png */; };
+		08138C91180487110050B120 /* 10-microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C8F180487110050B120 /* 10-microphone.png */; };
+		08138C92180487110050B120 /* 10-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C90180487110050B120 /* 10-microphone@2x.png */; };
+		08138C95180487600050B120 /* 32-speechbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C93180487600050B120 /* 32-speechbubble.png */; };
+		08138C96180487600050B120 /* 32-speechbubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C94180487600050B120 /* 32-speechbubble@2x.png */; };
+		08138C98180488620050B120 /* soundcloud_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C97180488620050B120 /* soundcloud_connect.png */; };
 		1B32586A3AA74F9A87E115E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E92F3D1C4074550A11F389B /* libPods.a */; };
 		8915FBB212BC4CF880AAF4CF /* libPods-PhotoSoundAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44403FEB74A545ACB620E424 /* libPods-PhotoSoundAppTests.a */; };
 /* End PBXBuildFile section */
@@ -74,6 +86,20 @@
 		08138C7618046E200050B120 /* InstagramUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramUser.m; sourceTree = "<group>"; };
 		08138C78180479ED0050B120 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		08138C79180479ED0050B120 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		08138C7E180480DE0050B120 /* SoundCloudNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudNetworkService.h; sourceTree = "<group>"; };
+		08138C7F180480DE0050B120 /* SoundCloudNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudNetworkService.m; sourceTree = "<group>"; };
+		08138C81180483390050B120 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		08138C82180483390050B120 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		08138C84180484100050B120 /* Instagram_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instagram_signin.png; sourceTree = "<group>"; };
+		08138C871804846C0050B120 /* Instagram_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instagram_normal.png; sourceTree = "<group>"; };
+		08138C89180484E80050B120 /* soundcloud_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundcloud_signin.png; sourceTree = "<group>"; };
+		08138C8B180486280050B120 /* 26-checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "26-checkmark.png"; sourceTree = "<group>"; };
+		08138C8C180486280050B120 /* 26-checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "26-checkmark@2x.png"; sourceTree = "<group>"; };
+		08138C8F180487110050B120 /* 10-microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-microphone.png"; sourceTree = "<group>"; };
+		08138C90180487110050B120 /* 10-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-microphone@2x.png"; sourceTree = "<group>"; };
+		08138C93180487600050B120 /* 32-speechbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-speechbubble.png"; sourceTree = "<group>"; };
+		08138C94180487600050B120 /* 32-speechbubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-speechbubble@2x.png"; sourceTree = "<group>"; };
+		08138C97180488620050B120 /* soundcloud_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundcloud_connect.png; sourceTree = "<group>"; };
 		3507FCA4FEA048F7AD8ED622 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		44403FEB74A545ACB620E424 /* libPods-PhotoSoundAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoSoundAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E92F3D1C4074550A11F389B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,13 +176,12 @@
 		08138C341803F40E0050B120 /* PhotoSoundApp */ = {
 			isa = PBXGroup;
 			children = (
+				08138C86180484230050B120 /* Images */,
 				08138C3D1803F40E0050B120 /* AppDelegate.h */,
 				08138C3E1803F40E0050B120 /* AppDelegate.m */,
 				08138C401803F40E0050B120 /* Main.storyboard */,
 				08138C431803F40E0050B120 /* ViewController.h */,
 				08138C441803F40E0050B120 /* ViewController.m */,
-				08138C461803F40E0050B120 /* Images.xcassets */,
-				08138C351803F40E0050B120 /* Supporting Files */,
 				08138C6F180434D60050B120 /* PhotoCollectionViewController.h */,
 				08138C70180434D60050B120 /* PhotoCollectionViewController.m */,
 				08138C7218043CE70050B120 /* InstagramNetworkService.h */,
@@ -165,6 +190,12 @@
 				08138C7618046E200050B120 /* InstagramUser.m */,
 				08138C78180479ED0050B120 /* ImageCell.h */,
 				08138C79180479ED0050B120 /* ImageCell.m */,
+				08138C7E180480DE0050B120 /* SoundCloudNetworkService.h */,
+				08138C7F180480DE0050B120 /* SoundCloudNetworkService.m */,
+				08138C461803F40E0050B120 /* Images.xcassets */,
+				08138C351803F40E0050B120 /* Supporting Files */,
+				08138C81180483390050B120 /* PhotoViewController.h */,
+				08138C82180483390050B120 /* PhotoViewController.m */,
 			);
 			path = PhotoSoundApp;
 			sourceTree = "<group>";
@@ -196,6 +227,23 @@
 				08138C561803F40E0050B120 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08138C86180484230050B120 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				08138C97180488620050B120 /* soundcloud_connect.png */,
+				08138C8F180487110050B120 /* 10-microphone.png */,
+				08138C90180487110050B120 /* 10-microphone@2x.png */,
+				08138C871804846C0050B120 /* Instagram_normal.png */,
+				08138C84180484100050B120 /* Instagram_signin.png */,
+				08138C89180484E80050B120 /* soundcloud_signin.png */,
+				08138C93180487600050B120 /* 32-speechbubble.png */,
+				08138C94180487600050B120 /* 32-speechbubble@2x.png */,
+				08138C8B180486280050B120 /* 26-checkmark.png */,
+				08138C8C180486280050B120 /* 26-checkmark@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,9 +326,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08138C91180487110050B120 /* 10-microphone.png in Resources */,
+				08138C92180487110050B120 /* 10-microphone@2x.png in Resources */,
+				08138C85180484100050B120 /* Instagram_signin.png in Resources */,
 				08138C471803F40E0050B120 /* Images.xcassets in Resources */,
 				08138C391803F40E0050B120 /* InfoPlist.strings in Resources */,
+				08138C96180487600050B120 /* 32-speechbubble@2x.png in Resources */,
 				08138C421803F40E0050B120 /* Main.storyboard in Resources */,
+				08138C881804846C0050B120 /* Instagram_normal.png in Resources */,
+				08138C8A180484E80050B120 /* soundcloud_signin.png in Resources */,
+				08138C8E180486280050B120 /* 26-checkmark@2x.png in Resources */,
+				08138C95180487600050B120 /* 32-speechbubble.png in Resources */,
+				08138C98180488620050B120 /* soundcloud_connect.png in Resources */,
+				08138C8D180486280050B120 /* 26-checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,11 +420,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08138C80180480DE0050B120 /* SoundCloudNetworkService.m in Sources */,
 				08138C451803F40E0050B120 /* ViewController.m in Sources */,
 				08138C7418043CE70050B120 /* InstagramNetworkService.m in Sources */,
 				08138C3F1803F40E0050B120 /* AppDelegate.m in Sources */,
 				08138C7A180479ED0050B120 /* ImageCell.m in Sources */,
 				08138C7718046E200050B120 /* InstagramUser.m in Sources */,
+				08138C83180483390050B120 /* PhotoViewController.m in Sources */,
 				08138C3B1803F40E0050B120 /* main.m in Sources */,
 				08138C71180434D60050B120 /* PhotoCollectionViewController.m in Sources */,
 			);

@@ -31,6 +31,10 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(InstagramNetworkService)
     return self;
 }
 
+- (void)authenticate {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=54c6dc48849142fea3eac3be32d3ca28&redirect_uri=photosound://instagram_auth&response_type=code"]];
+}
+
 /**
  curl -F 'client_id=54c6dc48849142fea3eac3be32d3ca28' -F 'client_secret=35fc261cd7a94effa60d6818a5af8641' -F 'grant_type=authorization_code' -F 'redirect_uri=photosound://' -F 'code=f1515d059cc443b99454d02aa9e1fccf' https://api.instagram.com/oauth/access_token
  **/

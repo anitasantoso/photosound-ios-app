@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "SCUI.h"
 #import "ViewController.h"
 #import "InstagramNetworkService.h"
+#import "SoundCloudNetworkService.h"
 #import "PhotoCollectionViewController.h"
 
 @implementation AppDelegate
@@ -25,23 +25,31 @@
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    // instagram auth
+    
     NSString *urlString = [url absoluteString];
-    NSString *codeParam = @"code=";
-    NSRange range = [urlString rangeOfString:codeParam];
-    if(range.location != NSNotFound) {
-        int location = range.location+codeParam.length;
-        NSString *apiCode = [urlString substringWithRange:NSMakeRange(location, [urlString length]-location)];
-        
-        [InstagramNetworkService sharedInstance].apiCode = apiCode;
+    
+    // instagram auth
+    if([urlString rangeOfString:@"instagram_auth"].location != NSNotFound) {
+        NSString *codeParam = @"code=";
+        NSRange range = [urlString rangeOfString:codeParam];
+        if(range.location != NSNotFound) {
+            int location = range.location+codeParam.length;
+            NSString *apiCode = [urlString substringWithRange:NSMakeRange(location, [urlString length]-location)];
+            
+            [InstagramNetworkService sharedInstance].apiCode = apiCode;
+            [InstagramNetworkService sharedInstance].isAuthenticated = YES;
+        }
+    }
+    
+    // if logged in to both networks
+    if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
         [[InstagramNetworkService sharedInstance]fetchUserMediaWithCompletion:^(InstagramUser *user) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             PhotoCollectionViewController *viewCon = (PhotoCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"PhotoCollectionViewController"];
             viewCon.imageURLs = user.imageURLs;
-            self.window.rootViewController = viewCon;   
+            self.window.rootViewController = viewCon;
         }];
     }
-    NSLog(@"%@", url);
     return YES;
 }
 				

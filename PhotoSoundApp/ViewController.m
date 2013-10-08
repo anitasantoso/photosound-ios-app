@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SCUI.h"
+#import "InstagramNetworkService.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *recordButton;
@@ -58,12 +59,36 @@
         [self.player play];
     }
 }
+
 - (IBAction)instagramLoginButtonPressed:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=54c6dc48849142fea3eac3be32d3ca28&redirect_uri=photosound://instagram_auth&response_type=code"]];
+    [[InstagramNetworkService sharedInstance]authenticate];
 }
 
 - (IBAction)uploadButtonPressed:(id)sender {
+    NSURL *trackURL = [NSURL
+                       fileURLWithPath:[
+                                        [NSBundle mainBundle]pathForResource:@"example" ofType:@"mp3"]];
+    
+    SCShareViewController *shareViewController;
+    SCSharingViewControllerCompletionHandler handler;
+    
+    handler = ^(NSDictionary *trackInfo, NSError *error) {
+        if (SC_CANCELED(error)) {
+            NSLog(@"Canceled!");
+        } else if (error) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        } else {
+            NSLog(@"Uploaded track: %@", trackInfo);
+        }
+    };
+    shareViewController = [SCShareViewController
+                           shareViewControllerWithFileURL:trackURL
+                           completionHandler:handler];
+    [shareViewController setTitle:@"Funny sounds"];
+    [shareViewController setPrivate:YES];
+    [self presentViewController:shareViewController animated:YES completion:nil];
 }
+
 - (IBAction)takePhotoButtonPressed:(id)sender {
     NSURL *instagramURL = [NSURL URLWithString:@"instagram://camera"];
     
