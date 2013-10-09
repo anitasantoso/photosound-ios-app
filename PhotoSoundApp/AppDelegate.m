@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // check for existing auth
     [[SoundCloudNetworkService sharedInstance]authenticate];
     [[InstagramNetworkService sharedInstance]checkAuthentication];
     
@@ -57,8 +58,6 @@
 
 - (void)showPhotoCollectionView {
     
-    // TODO spinner here
-    // TODO fade in effect
     [LoadingView show];
     [[InstagramNetworkService sharedInstance]fetchUserMediaWithCompletion:^(NSArray *imgURLs) {
         

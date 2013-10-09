@@ -56,6 +56,8 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(InstagramNetworkService)
  **/
 - (void)requestAccessTokenWithCompletion:(void (^)(id responseObject))completionBlock error:(void (^)(NSString *errorMsg))errorBlock{
     
+    NSAssert(self.apiCode != nil, @"Api code is nil");
+    
     NSDictionary *params = @{@"client_id" : kClientID, @"client_secret" : kClientSecret, @"grant_type" : @"authorization_code", @"redirect_uri" :   @"photosound://instagram_auth", @"code" : self.apiCode};
     
 
@@ -75,6 +77,23 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(InstagramNetworkService)
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         errorBlock(nil);
         NSLog(0);
+    }];
+    [self.client enqueueHTTPRequestOperation:op];
+}
+
+- (void)fetchUserWithCompletion:(void (^)(InstagramUser *user))completionBlock error:(void (^)(NSString *errorMsg))errorBlock {
+    
+    NSURLRequest *request = [self.client requestWithMethod:@"GET" path:[NSString stringWithFormat:@"/v1/users/%@/", self.userID] parameters:@{@"access_token" : self.accessToken}];
+    
+    // store image urls
+    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSDictionary *data = [JSON objectForKey:@"data"];
+        self.user = [[InstagramUser alloc]initWithDictionary:data];
+        
+        // call completion
+        completionBlock(self.user);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        errorBlock(nil);
     }];
     [self.client enqueueHTTPRequestOperation:op];
 }
@@ -109,10 +128,9 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(InstagramNetworkService)
         [self.client enqueueHTTPRequestOperation:op];
     };
     
-    // if we don't have a user
-    if(![InstagramNetworkService sharedInstance].user) {
+    // if we don't have a user, fetch user by user id
+    if(![InstagramNetworkService sharedInstance].user && [InstagramNetworkService sharedInstance].userID) {
         
-        // fetch user
         [[InstagramNetworkService sharedInstance]fetchUserWithCompletion:^(InstagramUser *user) {
             
             // then grab media
