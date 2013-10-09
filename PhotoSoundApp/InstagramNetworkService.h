@@ -13,9 +13,10 @@
 
 + (InstagramNetworkService*)sharedInstance;
 @property (nonatomic, strong) NSString *apiCode;
-
+- (void)checkAuthentication;
 - (void)authenticate;
-- (void)fetchUserMediaWithCompletion:(void (^)(InstagramUser *user))completionBlock;
+- (void)fetchUserWithCompletion:(void (^)(InstagramUser *user))completionBlock error:(void (^)(NSString *errorMsg))errorBlock;
+- (void)fetchUserMediaWithCompletion:(void (^)(NSArray *imageURLs))completionBlock error:(void (^)(NSString *errorMsg))errorBlock;;
 @property BOOL isAuthenticated;
 
 @end

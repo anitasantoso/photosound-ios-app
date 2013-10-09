@@ -40,6 +40,8 @@
 		08138C95180487600050B120 /* 32-speechbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C93180487600050B120 /* 32-speechbubble.png */; };
 		08138C96180487600050B120 /* 32-speechbubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C94180487600050B120 /* 32-speechbubble@2x.png */; };
 		08138C98180488620050B120 /* soundcloud_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 08138C97180488620050B120 /* soundcloud_connect.png */; };
+		08138C9B18053EB20050B120 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08138C9A18053EB20050B120 /* LoadingView.m */; };
+		08138C9D18053EC30050B120 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08138C9C18053EC30050B120 /* LoadingView.xib */; };
 		1B32586A3AA74F9A87E115E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E92F3D1C4074550A11F389B /* libPods.a */; };
 		8915FBB212BC4CF880AAF4CF /* libPods-PhotoSoundAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44403FEB74A545ACB620E424 /* libPods-PhotoSoundAppTests.a */; };
 /* End PBXBuildFile section */
@@ -100,6 +102,9 @@
 		08138C93180487600050B120 /* 32-speechbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-speechbubble.png"; sourceTree = "<group>"; };
 		08138C94180487600050B120 /* 32-speechbubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-speechbubble@2x.png"; sourceTree = "<group>"; };
 		08138C97180488620050B120 /* soundcloud_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundcloud_connect.png; sourceTree = "<group>"; };
+		08138C9918053EB20050B120 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		08138C9A18053EB20050B120 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		08138C9C18053EC30050B120 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		3507FCA4FEA048F7AD8ED622 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		44403FEB74A545ACB620E424 /* libPods-PhotoSoundAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoSoundAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E92F3D1C4074550A11F389B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +201,9 @@
 				08138C351803F40E0050B120 /* Supporting Files */,
 				08138C81180483390050B120 /* PhotoViewController.h */,
 				08138C82180483390050B120 /* PhotoViewController.m */,
+				08138C9918053EB20050B120 /* LoadingView.h */,
+				08138C9A18053EB20050B120 /* LoadingView.m */,
+				08138C9C18053EC30050B120 /* LoadingView.xib */,
 			);
 			path = PhotoSoundApp;
 			sourceTree = "<group>";
@@ -337,6 +345,7 @@
 				08138C8A180484E80050B120 /* soundcloud_signin.png in Resources */,
 				08138C8E180486280050B120 /* 26-checkmark@2x.png in Resources */,
 				08138C95180487600050B120 /* 32-speechbubble.png in Resources */,
+				08138C9D18053EC30050B120 /* LoadingView.xib in Resources */,
 				08138C98180488620050B120 /* soundcloud_connect.png in Resources */,
 				08138C8D180486280050B120 /* 26-checkmark.png in Resources */,
 			);
@@ -421,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08138C80180480DE0050B120 /* SoundCloudNetworkService.m in Sources */,
+				08138C9B18053EB20050B120 /* LoadingView.m in Sources */,
 				08138C451803F40E0050B120 /* ViewController.m in Sources */,
 				08138C7418043CE70050B120 /* InstagramNetworkService.m in Sources */,
 				08138C3F1803F40E0050B120 /* AppDelegate.m in Sources */,

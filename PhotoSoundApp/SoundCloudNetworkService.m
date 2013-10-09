@@ -54,6 +54,8 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(SoundCloudNetworkService)
 
 - (void)authenticate {
     [SCSoundCloud setClientID:@"56864d0f3d29077a654b993540815ea7" secret:@"ec967e80f3ea5554200a90773ec3020e" redirectURL:[NSURL URLWithString:@"photosound://soundcloud_auth"]];
+    
+    [SoundCloudNetworkService sharedInstance].isAuthenticated = [SCSoundCloud account] != nil;
 }
 
 @end

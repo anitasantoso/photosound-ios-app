@@ -9,27 +9,96 @@
 #import "ViewController.h"
 #import "SCUI.h"
 #import "InstagramNetworkService.h"
+#import "SoundCloudNetworkService.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *recordButton;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
+@property (strong, nonatomic) IBOutlet UIButton *soundCloudLoginButton;
+@property (strong, nonatomic) IBOutlet UIImageView *scLoginTick;
+@property (strong, nonatomic) IBOutlet UIImageView *instaLoginTick;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @end
 
 @implementation ViewController
 
 - (IBAction)loginButtonPressed:(id)sender {
-    [SCSoundCloud requestAccessWithPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
-        SCLoginViewController *loginViewController;
-        
-        loginViewController = [SCLoginViewController
-                               loginViewControllerWithPreparedURL:preparedURL
-                               completionHandler:^(NSError *error) {
-                                   
-                               }];
-        [self presentViewController:loginViewController animated:YES completion:nil];
-    }];
+    if(![SoundCloudNetworkService sharedInstance].isAuthenticated) {
+        [SCSoundCloud requestAccessWithPreparedAuthorizationURLHandler:^(NSURL *preparedURL) {
+            SCLoginViewController *loginViewController = [SCLoginViewController
+                                                          loginViewControllerWithPreparedURL:preparedURL
+                                                          completionHandler:^(NSError *error) {
+                                                              self.scLoginTick.hidden = NO;
+                                                              [SoundCloudNetworkService sharedInstance].isAuthenticated = YES;
+                                                          }];
+            [self presentViewController:loginViewController animated:YES completion:nil];
+        }];
+    } else {
+        // TODO
+    }
+    
+    /** get tracks
+    
+    SCAccount *account = [SCSoundCloud account];
+    if (account == nil) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Not Logged In"
+                              message:@"You must login first"
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    SCRequestResponseHandler handler;
+    handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSError *jsonError = nil;
+        NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                             JSONObjectWithData:data
+                                             options:0
+                                             error:&jsonError];
+        if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
+            SCTTrackListViewController *trackListVC;
+            trackListVC = [[SCTTrackListViewController alloc]
+                           initWithNibName:@"SCTTrackListViewController"
+                           bundle:nil];
+            trackListVC.tracks = (NSArray *)jsonResponse;
+            [self presentViewController:trackListVC
+                               animated:YES completion:nil];
+        }
+    };
+    
+    NSString *resourceURL = @"https://api.soundcloud.com/me/tracks.json";
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:resourceURL]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:handler];
+    **/
+    
+    /**
+     play sound
+     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+     NSString *streamURL = [track objectForKey:@"stream_url"];
+     
+     SCAccount *account = [SCSoundCloud account];
+     
+     [SCRequest performMethod:SCRequestMethodGET
+     onResource:[NSURL URLWithString:streamURL]
+     usingParameters:nil
+     withAccount:account
+     sendingProgressHandler:nil
+     responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+     NSError *playerError;
+     player = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+     [player prepareToPlay];
+     [player play];
+     }];
+     **/
 }
+
 - (IBAction)recordButtonPressed:(id)sender {
     
     if(self.player.playing) {
@@ -65,9 +134,11 @@
 }
 
 - (IBAction)uploadButtonPressed:(id)sender {
-    NSURL *trackURL = [NSURL
-                       fileURLWithPath:[
-                                        [NSBundle mainBundle]pathForResource:@"example" ofType:@"mp3"]];
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *soundFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
     SCShareViewController *shareViewController;
     SCSharingViewControllerCompletionHandler handler;
@@ -82,7 +153,7 @@
         }
     };
     shareViewController = [SCShareViewController
-                           shareViewControllerWithFileURL:trackURL
+                           shareViewControllerWithFileURL:soundFileURL
                            completionHandler:handler];
     [shareViewController setTitle:@"Funny sounds"];
     [shareViewController setPrivate:YES];
@@ -97,11 +168,21 @@
     }
 }
 
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
-//    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
-//    
-//    [stopButton setEnabled:NO];
-//    [playButton setEnabled:YES];
+//- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+////    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+////    
+////    [stopButton setEnabled:NO];
+////    [playButton setEnabled:YES];
+//}
+
+- (void)updateAuthenticationStatus {
+    self.scLoginTick.hidden = ![SoundCloudNetworkService sharedInstance].isAuthenticated;
+    self.instaLoginTick.hidden = ![InstagramNetworkService sharedInstance].isAuthenticated;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateAuthenticationStatus];
 }
 
 - (void)viewDidLoad

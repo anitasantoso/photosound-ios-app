@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotoCollectionViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
 @property (nonatomic, strong) NSArray *imageURLs;
+
 @end

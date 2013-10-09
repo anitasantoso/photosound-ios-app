@@ -303,11 +303,11 @@ NSString * const NXOAuth2ClientConnectionContextTokenRefresh = @"tokenRefresh";
 // Web Server Flow only
 - (void)requestTokenWithAuthGrant:(NSString *)authGrant redirectURL:(NSURL *)redirectURL;
 {
-    NSAssert1(!authConnection, @"authConnection already running with: %@", authConnection);
+//    NSAssert1(!authConnection, @"authConnection already running with: %@", authConnection);
+    [authConnection cancel];  // just to be sure
     
     NSMutableURLRequest *tokenRequest = [NSMutableURLRequest requestWithURL:tokenURL];
     [tokenRequest setHTTPMethod:@"POST"];
-    [authConnection cancel];  // just to be sure
 
     self.authenticating = YES;
 
@@ -338,10 +338,11 @@ NSString * const NXOAuth2ClientConnectionContextTokenRefresh = @"tokenRefresh";
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password;
 {
     NSAssert1(!authConnection, @"authConnection already running with: %@", authConnection);
+    [authConnection cancel];  // just to be sure
     
     NSMutableURLRequest *tokenRequest = [NSMutableURLRequest requestWithURL:tokenURL];
     [tokenRequest setHTTPMethod:@"POST"];
-    [authConnection cancel];  // just to be sure
+
 
     self.authenticating = YES;
 

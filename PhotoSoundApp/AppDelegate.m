@@ -11,16 +11,21 @@
 #import "InstagramNetworkService.h"
 #import "SoundCloudNetworkService.h"
 #import "PhotoCollectionViewController.h"
+#import "LoadingView.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-//    [SCSoundCloud setClientID:@"56864d0f3d29077a654b993540815ea7" secret:@"ec967e80f3ea5554200a90773ec3020e" redirectURL:[NSURL URLWithString:@"photosound://"]];
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//    ViewController *viewCon = (ViewController*)[storyboard instantiateInitialViewController];
-//    self.window.rootViewController = viewCon;
+    [[SoundCloudNetworkService sharedInstance]authenticate];
+    [[InstagramNetworkService sharedInstance]checkAuthentication];
+    
+    // show this initially
+    [self showLoginView];
+    
+    if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
+        [self showPhotoCollectionView];
+    }
     return YES;
 }
 
@@ -41,18 +46,40 @@
         }
     }
     
-    // if logged in to both networks
+    [self.window.rootViewController performSelector:@selector(updateAuthenticationStatus) withObject:nil];
+    
+    // if logged in to both networks, show photo collection view
     if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
-        [[InstagramNetworkService sharedInstance]fetchUserMediaWithCompletion:^(InstagramUser *user) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            PhotoCollectionViewController *viewCon = (PhotoCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"PhotoCollectionViewController"];
-            viewCon.imageURLs = user.imageURLs;
-            self.window.rootViewController = viewCon;
-        }];
+        [self showPhotoCollectionView];
     }
     return YES;
 }
-				
+
+- (void)showPhotoCollectionView {
+    
+    // TODO spinner here
+    // TODO fade in effect
+    [LoadingView show];
+    [[InstagramNetworkService sharedInstance]fetchUserMediaWithCompletion:^(NSArray *imgURLs) {
+        
+        [LoadingView hide];
+        
+        // TODO hide spinner here
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        PhotoCollectionViewController *viewCon = (PhotoCollectionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"PhotoCollectionViewController"];
+        viewCon.imageURLs = imgURLs;
+        self.window.rootViewController = viewCon;
+    } error:^(NSString *errorMsg) {
+        
+    }];
+}
+
+- (void)showLoginView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    ViewController *viewCon = (ViewController*)[storyboard instantiateInitialViewController];
+    self.window.rootViewController = viewCon;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

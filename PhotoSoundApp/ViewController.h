@@ -11,4 +11,5 @@
 
 @interface ViewController : UIViewController<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
+- (void)updateAuthenticationStatus;
 @end
