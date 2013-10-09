@@ -22,11 +22,11 @@ JTSYNTHESIZE_SINGLETON_FOR_CLASS(LoadingView)
 
 + (void)show {
     LoadingView *loadingView = [[[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil]firstObject];
-    [[[[UIApplication sharedApplication]windows]lastObject]addSubview:loadingView];
+    [[[UIApplication sharedApplication]keyWindow] addSubview:loadingView];
 }
 
 + (void)hide {
-    [[[[[[UIApplication sharedApplication]windows]lastObject]subviews]lastObject]removeFromSuperview];
+    [[[[[UIApplication sharedApplication]keyWindow]subviews]lastObject]removeFromSuperview];
 }
 
 /*

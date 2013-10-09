@@ -10,6 +10,7 @@
 #import "SCUI.h"
 #import "InstagramNetworkService.h"
 #import "SoundCloudNetworkService.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *recordButton;
@@ -183,6 +184,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateAuthenticationStatus];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
+        [(AppDelegate*)[UIApplication sharedApplication].delegate performSelector:@selector(showPhotoCollectionView)];
+    }
 }
 
 - (void)viewDidLoad

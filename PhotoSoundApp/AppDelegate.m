@@ -24,9 +24,6 @@
     // show this initially
     [self showLoginView];
     
-    if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
-        [self showPhotoCollectionView];
-    }
     return YES;
 }
 
@@ -48,12 +45,13 @@
     }
     
     [self.window.rootViewController performSelector:@selector(updateAuthenticationStatus) withObject:nil];
-    
-    // if logged in to both networks, show photo collection view
-    if([SoundCloudNetworkService sharedInstance].isAuthenticated && [InstagramNetworkService sharedInstance].isAuthenticated) {
-        [self showPhotoCollectionView];
-    }
     return YES;
+}
+
+- (void)showLoginView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    ViewController *viewCon = (ViewController*)[storyboard instantiateInitialViewController];
+    self.window.rootViewController = viewCon;
 }
 
 - (void)showPhotoCollectionView {
@@ -71,12 +69,6 @@
     } error:^(NSString *errorMsg) {
         
     }];
-}
-
-- (void)showLoginView {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    ViewController *viewCon = (ViewController*)[storyboard instantiateInitialViewController];
-    self.window.rootViewController = viewCon;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
